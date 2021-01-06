@@ -1,5 +1,5 @@
 ## Description
-A small JavaScript-Canvas game I made for a school project
+A small JavaScript-Canvas game I made for a school project.__
 The player controls a little tank that must defend his home against alien invaders.
 Open the "index.html" to start the game.
 
