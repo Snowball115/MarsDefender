@@ -8,5 +8,5 @@ Open the "index.html" to start the game.
 * Up arrow: Shoot
 
 ## Screenshots
-![Screen01](https://github.com/Snowball115/MarsDefender/blob/main/Screenshots/Screen01.png)
-![Screen01](https://github.com/Snowball115/MarsDefender/blob/main/Screenshots/Screen02.png)
+![Screen01](https://github.com/Snowball115/MarsDefender/blob/main/Screenshots/Screen01.jpg)
+![Screen01](https://github.com/Snowball115/MarsDefender/blob/main/Screenshots/Screen02.jpg)
