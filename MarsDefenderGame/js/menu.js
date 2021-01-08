@@ -1,4 +1,5 @@
 var currentUserName = "";
+var currentDifficulty = "";
 
 var posX = 0;
 var interval;
@@ -6,6 +7,16 @@ var interval;
 function saveUserName(){
     currentUserName = document.getElementById("userID").value;
     localStorage.setItem("currentUser", currentUserName);
+}
+
+function saveDifficulty(){
+    currentDifficulty = document.getElementById("difficultySetting").value;
+    localStorage.setItem("currentDifficulty", currentDifficulty);
+}
+
+function saveSettings(){
+    saveUserName();
+    saveDifficulty();
 }
 
 function randomNum(min, max){

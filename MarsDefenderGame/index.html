@@ -9,11 +9,15 @@
   </head>
   <body>
     <h1>Mars Defender</h1>
-    <a href="main.html" id="target" class="menuButtons" onclick="saveUserName()">Start Game</a>
+    <a href="main.html" id="target" class="menuButtons" onclick="saveSettings()">Start Game</a>
     <a href="highscores.html" class="menuButtons">Highscores</a>
 
     <form>
         <input id="userID" type="text" name="userName" value="" class="menuButtons" placeholder="Enter your name">
+        <select name="difficulty" id="difficultySetting" class="menuButtons">
+          <option value="easy">Easy</option>
+          <option value="hard">Hard</option>
+        </select>
     </form>
 
     <div class="shipActor">

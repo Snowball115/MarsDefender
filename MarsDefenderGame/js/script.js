@@ -32,6 +32,18 @@ var globalHealth = 5;
 var shootTimer = 0;
 var spawnTimer = 0;
 
+// Set difficulty level
+if (JSON.parse(localStorage.getItem("currentDifficulty") == "easy")){
+    console.log("easy");
+    minShipSpeed = 1.5;
+    maxShipSpeed = 2.0;
+}
+else if (JSON.parse(localStorage.getItem("currentDifficulty") == "hard")){
+    console.log("hard");
+    minShipSpeed = 1.5;
+    maxShipSpeed = 4.0;
+}
+
 $(window).load(function()
 {
     // ====== CANVAS SETUP ======
@@ -305,6 +317,7 @@ $(window).load(function()
 
             playerStats.name = localStorage.getItem("currentUser");
             playerStats.score = globalScore;
+            playerStats.difficulty = localStorage.getItem("currentDifficulty");
             highscores.push(playerStats);
             localStorage.setItem("highscores", JSON.stringify(highscores));
         }
