@@ -97,7 +97,7 @@ $(window).load(function()
         context.fillText(localStorage.getItem("currentUser"), 500, 50);
     }
     
-    // ====== ENTITIES CONSTRUCTORS (too lazy to make classes now) ======
+    // ====== ENTITIES CONSTRUCTORS ======
 
     function Background(image){
         this.width = image.width;
