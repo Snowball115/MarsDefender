@@ -13,7 +13,7 @@
     <a href="highscores.html" class="menuButtons">Highscores</a>
 
     <form>
-        <input id="userID" type="text" name="userName" value="" class="menuButtons" placeholder="Enter your name">
+        <input id="userID" type="text" name="userName" value="" class="menuButtons" placeholder="Enter your name" onkeydown="if(event.keyCode == 13) return false;">
         <select name="difficulty" id="difficultySetting" class="menuButtons">
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
