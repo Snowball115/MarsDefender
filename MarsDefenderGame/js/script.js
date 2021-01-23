@@ -24,24 +24,38 @@ var userNameText;
 var playerStats = {};
 var isRunning = true;
 var playerSpeed = 10;
+var enemyHealth = 2;
 var minShipSpeed = 1.5;
-var maxShipSpeed = 4.0;
-var projectileSpeed = 15;
+var maxShipSpeed = 2.3;
+var projectileSpeed = 12;
 var globalScore = 0;
 var globalHealth = 5;
 var shootTimer = 0;
 var spawnTimer = 0;
 
 // Set difficulty level
-if (JSON.parse(localStorage.getItem("currentDifficulty") == "easy")){
-    console.log("easy");
-    minShipSpeed = 1.5;
-    maxShipSpeed = 2.0;
-}
-else if (JSON.parse(localStorage.getItem("currentDifficulty") == "hard")){
-    console.log("hard");
-    minShipSpeed = 1.5;
-    maxShipSpeed = 4.0;
+switch (localStorage.getItem("currentDifficulty"))
+{
+    case "easy":
+        console.log("easy");
+        enemyHealth = 1;
+        minShipSpeed = 1.3;
+        maxShipSpeed = 1.8;
+        break;
+
+    case "medium":
+        console.log("medium");
+        enemyHealth = 2;
+        minShipSpeed = 1.5;
+        maxShipSpeed = 2.3;
+        break;
+
+    case "hard":
+        console.log("hard");
+        enemyHealth = 2;
+        minShipSpeed = 1.5;
+        maxShipSpeed = 4.0;
+        break;
 }
 
 $(window).load(function()
@@ -97,33 +111,42 @@ $(window).load(function()
         context.fillText(localStorage.getItem("currentUser"), 500, 50);
     }
     
-    // ====== ENTITIES CONSTRUCTORS ======
+    // ====== ENTITIES CLASSES ======
 
-    function Background(image){
-        this.width = image.width;
-        this.height = image.height;
-        this.posX = 0;
-        this.posY = 0;
-        this.image = image;
+    // == Base class for every entity in game
+    class Entity {
 
-        this.draw = function(){
+        constructor(image, x, y){
+            this.image = image;
+            this.width = image.width;
+            this.height = image.height;
+            this.posX = x;
+            this.posY = y;
+        }
+
+        draw(){
             context.drawImage(this.image, this.posX, this.posY, this.width, this.height);
         }
     }
 
-    function Player(image, x, y){
-        this.maskX = 0;
-        this.width = image.width / 2;
-        this.height = image.height;
-        this.posX = x;
-        this.posY = y;
-        this.image = image;
+    // == Background image class
+    class Background extends Entity {
 
-        this.draw = function(){
-            context.drawImage(this.image, this.maskX, 10, this.width, this.height, this.posX, this.posY, this.width, this.height);
+        constructor(image){
+            super(image, 0, 0);
+        }
+     }
+
+    // == Player class (tank)
+    class Player extends Entity{
+
+        constructor(image, x, y){
+            super(image, x, y);
+            this.maskX = 0;
+            this.width = image.width / 2;
         }
 
-        this.move = function(){
+        move(){
             if (rightKey && player.posX < 955){
                 this.posX += playerSpeed;
                 this.maskX = this.width;
@@ -133,73 +156,76 @@ $(window).load(function()
                 this.maskX = 0;
             }
         }
+
+        draw(){
+            context.drawImage(this.image, this.maskX, 10, this.width, this.height, this.posX, this.posY, this.width, this.height);
+        }
     }
 
-    function Projectile(x, y){
-        this.posX = x;
-        this.posY = y;
-        this.width = 50;
-        this.height = 50;
+    // == Projectiles that the player can shoot
+    class Projectile extends Entity{
 
-        this.draw = function(){
-            context.drawImage(projectile, this.posX, this.posY, this.width, this.height);
+        constructor(image, x, y){
+            super(image, x, y);
+            this.width = 50;
+            this.height = 50;
         }
 
-        this.move = function(){
+        move(){
             this.posY -= projectileSpeed;
         }
 
-        this.die = function(index){
+        die(index){
             projectiles.splice(index, 1);
         }
     }
 
-    function Hit(x, y){
-        this.posX = x;
-        this.posY = y;
-        this.width = 50;
-        this.height = 50;
-        this.timer = 0;
+    // == Projectile hit effect on enemy ships
+    class Hit extends Entity{
 
-        this.draw = function(){
+        constructor(image, x, y){
+            super(image, x, y);
+            this.width = 50;
+            this.height = 50;
+            this.timer = 0;
+        }
+
+        draw(){
             this.timer++
             context.drawImage(hitEffect, this.posX, this.posY, this.width, this.height);
             if (this.timer > 5) hits.splice(this, 1);
         }
     }
 
-    function Building(image, x, y){
-        this.width = image.width;
-        this.height = image.height;
-        this.posX = x;
-        this.posY = y;
-        this.image = image;
+    // == Building class
+    class Building extends Entity {
 
-        this.draw = function(){
-            context.drawImage(this.image, this.posX, this.posY, this.width, this.height);
+        constructor(image, x, y){
+            super(image, x, y);
         }
-    }
+     }
 
-    function Enemy(image, x, y, maskY){
-        this.maskX = 0;
-        this.maskY = maskY;
-        this.width = image.width;
-        this.height = image.height / 9;
-        this.posX = x;
-        this.posY = y;
-        this.image = image;
-        this.enemySpeed = randomNum(minShipSpeed, maxShipSpeed);
-        this.health = 2;
+    // == Enemy class
+    class Enemy extends Entity{
 
-        this.draw = function(){
+        constructor(image, x, y, maskY){
+            super(image, x, y);
+            this.maskX = 0;
+            this.maskY = maskY;
+            this.height = this.image.height / 9;
+            this.enemySpeed = randomNum(minShipSpeed, maxShipSpeed);
+            this.health = enemyHealth;
+        }
+
+        draw(){
             context.drawImage(this.image, this.maskX, this.maskY, this.width, this.height, this.posX, this.posY, this.width, this.height);
         }
 
-        this.move = function(){
+        move(){
             this.posY += this.enemySpeed;
         }
 
-        this.die = function(index){
+        die(index){
             enemyShips.splice(index, 1);
         }
     }
@@ -250,7 +276,7 @@ $(window).load(function()
 
         shootTimer++;
         if (upKey && shootTimer > 18){
-            projectiles.push(new Projectile(player.posX, player.posY - 20));
+            projectiles.push(new Projectile(projectile, player.posX, player.posY - 20));
             shootTimer = 0;
         }
 
@@ -281,7 +307,7 @@ $(window).load(function()
 
                 if (collisionDetection(enemyShips[j], projectiles[i])){
 
-                    hits.push(new Hit(projectiles[i].posX, projectiles[i].posY));
+                    hits.push(new Hit(hitEffect, projectiles[i].posX, projectiles[i].posY));
                     projectiles[i].die();
                     enemyShips[j].health--;
 
