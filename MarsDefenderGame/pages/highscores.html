@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/svg/vite.svg" />
+    <title>Highscores</title>
+  </head>
+  <body>
+    
+    <div id="app" data-app-state="highscores">
+
+      <div class="container">
+
+        <a href="/index.html" class="btn btn--b">Back</a>
+
+        <button class="btn btn--b" data-score-delete>Delete Scores</button>
+    
+        <table id="scoreTable" data-score-table>
+          <tr>
+            <th>Name</td>
+            <th>Score</td>
+            <th>Difficulty</th>
+          </tr>
+        </table>
+
+      </div>
+      
+    </div>
+
+    <script type="module" src="/src/app/main.ts"></script>
+
+  </body>
+</html>

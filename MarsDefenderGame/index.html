@@ -2,28 +2,52 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/svg/vite.svg" />
     <title>Mars Defender</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/jquery.js" type="text/javascript"></script>
-    <script src="./js/menu.js" type="text/javascript"></script>
   </head>
   <body>
-    <h1>Mars Defender</h1>
-    <a href="main.html" id="target" class="menuButtons" onclick="saveSettings()">Start Game</a>
-    <a href="highscores.html" class="menuButtons">Highscores</a>
 
-    <form>
-        <input id="userID" type="text" name="userName" value="" class="menuButtons" placeholder="Enter your name" onkeydown="if(event.keyCode == 13) return false;">
-        <select name="difficulty" id="difficultySetting" class="menuButtons">
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-    </form>
+    <div id="app" data-app-state="menu">
 
-    <div class="shipActor">
-        <img src="./img/shipActor.png" height="100" width="100">
+      <div class="container">
+
+        <h1 class="headline">Mars Defender</h1>
+
+        <a href="/pages/game.html" id="target" class="btn" data-menu-start>Start Game</a>
+        <a href="/pages/highscores.html" class="btn">Highscores</a>
+    
+        <form>
+          <div class="form-group">
+            <input id="userID" type="text" name="userName" placeholder="Enter your name" onkeydown="if(event.keyCode == 13) return false;">
+          </div>
+          <div class="form-group">
+            <div class="radio-group">
+              <div class="radio">
+                <input type="radio" name="difficultySetting" value="Easy" id="easy" checked />
+                <label for="easy">Easy</label>
+              </div>
+              <div class="radio">
+                <input type="radio" name="difficultySetting" value="Medium" id="medium" />
+                <label for="medium">Medium</label>
+              </div>
+              <div class="radio">
+                <input type="radio" name="difficultySetting" value="Hard" id="hard" />
+                <label for="hard">Hard</label>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+      <div class="ship-actor" data-menu-ship>
+          <img src="/img/png/shipActor.png" height="100" width="100">
+      </div>
+
     </div>
+
+    <script type="module" src="/src/app/main.ts"></script>
 
   </body>
 </html>

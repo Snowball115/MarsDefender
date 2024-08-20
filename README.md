@@ -1,7 +1,10 @@
 ## Description
-A small JavaScript-Canvas game I made for a school project.<br>
+A small JavaScript Canvas game I made for a school project.<br>
 The player controls a little tank that must defend his home against alien invaders.<br>
-Open the "index.html" to start the game.
+
+## Dev Dependencies
+- npm create vite@latest (Vanilla/TypeScript) [5.3.3]
+- npm add -D sass
 
 ## Controls
 * Left/Right arrows: Move

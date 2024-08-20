@@ -1,0 +1,27 @@
+table {
+
+    width: 300px;
+    border: 1px solid silver;
+    border-collapse: collapse;
+
+    font-size: 30px;
+    text-align: center;
+    box-shadow:
+    0 0 0 5px rgba(20, 55, 48, 0.8),
+    0 0 0 10px rgba(20, 55, 48, 0.6),
+    0 0 0 15px rgba(20, 55, 48, 0.4),
+    0 0 0 20px rgba(20, 55, 48, 0.2);
+
+    tr {
+
+        th {
+            padding: 10px;
+        }
+
+        td {
+            padding: 20px;
+            border: 1px solid silver;
+            width: 150px;
+        }
+    }
+  }
