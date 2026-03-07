@@ -2,9 +2,10 @@
 A small JavaScript Canvas game I made for a school project.<br>
 The player controls a little tank that must defend his home against alien invaders.<br>
 
-## Dev Dependencies
-- npm create vite@latest (Vanilla/TypeScript) [5.3.3]
-- npm add -D sass
+## How to run
+1. Run "npm install"
+2. Run "npm run dev"
+3. Open the URL that vite shows you in the terminal
 
 ## Controls
 * Left/Right arrows: Move

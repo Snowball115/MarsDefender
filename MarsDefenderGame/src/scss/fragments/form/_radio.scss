@@ -1,3 +1,5 @@
+@use '../../vars/colors';
+
 .radio {
 
     display: flex;
@@ -28,25 +30,25 @@ input[type="radio"] {
         display: block;
         width: 100%;
         padding: 1.5rem 1rem;
-        border: 2px solid $c-3;
+        border: 2px solid colors.$c-3;
         border-radius: 20px;
 
         cursor: pointer;
-        color: $c-text-dim;
+        color: colors.$c-text-dim;
         font-size: 24px;
         font-weight: 700;
         text-align: center;
-        background-color: $c-1;
+        background-color: colors.$c-1;
         box-shadow: 0px 3px 10px -2px hsla(150, 5%, 65%, 0.5);
         transition: background-color 300ms ease-in-out, color 300ms ease-in-out, box-shadow 300ms ease-in-out;
 
         &:hover {
-            box-shadow: 0px 0px 20px $c-3;
+            box-shadow: 0px 0px 20px colors.$c-3;
         }
 
         &:active {
-            background-color: $c-2;
-            box-shadow: 0px 0px 10px $c-3;
+            background-color: colors.$c-2;
+            box-shadow: 0px 0px 10px colors.$c-3;
             color: hsla(215, 0%, 100%, 1);
         }
 
@@ -58,7 +60,7 @@ input[type="radio"] {
             left: 50%;
             height: 50px;
             width: 50px;
-            border: 2px solid $c-3;
+            border: 2px solid colors.$c-3;
             border-radius: 50%;
             translate: -50% 0;
             scale: 0.2;
@@ -67,7 +69,7 @@ input[type="radio"] {
             background-repeat: no-repeat;
             background-size: 24px 24px;
             background-position: center;
-            background-color: $c-1;
+            background-color: colors.$c-1;
             font-size: 24px;
             line-height: 50px;
             text-align: center;
@@ -90,9 +92,9 @@ input[type="radio"] {
 
     &:checked + label {
 
-        background-color: $c-3;
+        background-color: colors.$c-3;
         color: hsla(215, 0%, 100%, 1);
-        box-shadow: 0px 0px 20px $c-3;
+        box-shadow: 0px 0px 20px colors.$c-3;
 
         &:after {
             scale: 1;

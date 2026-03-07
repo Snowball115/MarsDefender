@@ -1,5 +1,6 @@
 {
   "name": "marsdefendergame",
+  "author": "Snowball115 (https://github.com/Snowball115)",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -11,6 +12,6 @@
   "devDependencies": {
     "sass": "^1.77.8",
     "typescript": "^5.2.2",
-    "vite": "^5.3.1"
+    "vite": "^6"
   }
 }
